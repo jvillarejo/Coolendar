@@ -11,7 +11,7 @@ describe 'Calendar' do
     end
 
     it 'adds a holiday' do
-      expect(calendar.add_holiday_rule(rule).number_of_holidays).to eq(1)
+      expect(calendar.add_holiday_rule(rule).number_of_rules).to eq(1)
     end
 
     it 'matches the holiday' do
@@ -22,7 +22,14 @@ describe 'Calendar' do
     end
   end
 
-  describe '#is_holiday' do
-    
+  context 'when rule is a day of week' do
+    let (:rule) { DayOfWeek.saturday }
+
+    it 'matches when date is the same day of week' do
+      calendar.add_holiday_rule(rule)
+
+      expect(calendar.is_holiday(Date.strptime('2013-12-28'))).to be_true
+      expect(calendar.is_holiday(Date.strptime('2013-12-29'))).to be_false 
+    end
   end
 end

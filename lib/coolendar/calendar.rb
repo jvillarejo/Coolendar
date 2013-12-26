@@ -13,7 +13,7 @@ module Coolendar
       @rules.any? { |rule| rule.match?(day) }
     end
 
-    def number_of_holidays
+    def number_of_rules
       @rules.size
     end
   end
