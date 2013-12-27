@@ -39,7 +39,7 @@ describe 'Calendar' do
   end
 
   context 'when rule is a day of week' do
-    let (:rule) { Coolendar::DayOfWeek.saturday }
+    let (:rule) { Coolendar::WeekDay.saturday }
 
     it 'matches when date is the same day of week' do
       calendar.add_holiday_rule(rule)
@@ -50,7 +50,7 @@ describe 'Calendar' do
   end
 
   context 'when rule is a day of month' do 
-    let (:rule) { Coolendar::DayOfMonth.new(12,25) }
+    let (:rule) { Coolendar::MonthDay.new(12,25) }
 
     it 'matches when date is same date and same month' do 
       calendar.add_holiday_rule(rule)
@@ -75,8 +75,8 @@ describe 'Calendar' do
     end
 
     context 'when is a range of days of week' do
-      let (:from) { Coolendar::DayOfWeek.tuesday }
-      let (:to) { Coolendar::DayOfWeek.friday }
+      let (:from) { Coolendar::WeekDay.tuesday }
+      let (:to) { Coolendar::WeekDay.friday }
 
       it 'matches when date is tuesday, wednesday, thursday or friday' do
         expect(calendar.is_holiday(Date.strptime('2013-12-24'))).to be_true
@@ -93,8 +93,8 @@ describe 'Calendar' do
     end
 
     context 'when is a range of day of month' do 
-      let (:from) { Coolendar::DayOfMonth.new(10,25)}
-      let (:to) { Coolendar::DayOfMonth.new(12,25)}
+      let (:from) { Coolendar::MonthDay.new(10,25)}
+      let (:to) { Coolendar::MonthDay.new(12,25)}
 
       it 'matches when date is between month and day' do 
         expect(calendar.is_holiday(Date.strptime('2013-12-24'))).to be_true

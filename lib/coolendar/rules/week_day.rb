@@ -1,5 +1,5 @@
 module Coolendar
-  class DayOfWeek < HolidayRule
+  class WeekDay < HolidayRule
     include Comparable
 
     def self.week_days
@@ -27,7 +27,7 @@ module Coolendar
     end
 
     def succ
-      result = DayOfWeek.new(next_index)
+      result = WeekDay.new(next_index)
     end
 
     def next_day

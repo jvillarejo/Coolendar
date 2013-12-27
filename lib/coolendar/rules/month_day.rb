@@ -1,5 +1,5 @@
 module Coolendar
-  class DayOfMonth < HolidayRule
+  class MonthDay < HolidayRule
     include Comparable
 
     attr_reader :month, :day
@@ -18,7 +18,7 @@ module Coolendar
     end
 
     def succ()
-      DayOfMonth.new(next_date.month,next_date.day)
+      MonthDay.new(next_date.month,next_date.day)
     end
 
     def <=>(other)

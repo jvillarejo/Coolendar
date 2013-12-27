@@ -7,11 +7,11 @@ module Coolendar
     end
 
     def self.week_day(week_day,description='')
-      set_description(description) { DayOfWeek.send(week_day) }
+      set_description(description) { WeekDay.send(week_day) }
     end
 
     def self.month_day(month,day,description='')
-      set_description(description) { DayOfMonth.new(month,day) }
+      set_description(description) { MonthDay.new(month,day) }
     end
 
     def self.range(from,to,description='')
