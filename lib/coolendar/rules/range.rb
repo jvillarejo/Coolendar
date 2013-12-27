@@ -12,16 +12,13 @@ module Coolendar
     private 
     def rule_range
       range = []
+      range << @from      
       
-      range << @from
-      
-      current = @from.succ
-      
+      current = @from.succ 
       while current != @to do
         range << current
         current = current.succ
       end
-
       range << @to
     end
   end
