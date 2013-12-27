@@ -18,6 +18,8 @@ module Coolendar
     end
 
     def get_holiday(day)
+      raise NoHolidayFoundError.new unless is_holiday(day)
+      
       @rules.find { |rule| rule.match?(day) }.description
     end
   end

@@ -16,6 +16,8 @@ describe 'Calendar' do
     expect(calendar.get_holiday(Date.strptime('2014-2-5'))).to eq('Carnival')
   end
 
+  it { expect{calendar.get_holiday(Date.strptime('2013-8-9'))}.to raise_error Coolendar::NoHolidayFoundError }
+
 
   context 'when day is a simple string' do
     let (:rule) { Coolendar::SingleDay.new(Date.today) }

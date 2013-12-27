@@ -8,4 +8,5 @@ require 'coolendar/rules/range'
 
 module Coolendar
 
+  class NoHolidayFoundError< StandardError; end
 end
