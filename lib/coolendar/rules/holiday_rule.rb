@@ -14,6 +14,10 @@ module Coolendar
       set_description(description) { DayOfMonth.new(month,day) }
     end
 
+    def self.range(from,to,description='')
+      set_description(description) { Range.new(from,to) }
+    end
+
     private
     def self.set_description(description, &rule_creation)
       rule = rule_creation.call

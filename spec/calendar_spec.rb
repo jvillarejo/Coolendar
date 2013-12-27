@@ -8,10 +8,12 @@ describe 'Calendar' do
     calendar.add_holiday_rule(Coolendar::HolidayRule.single_day(date,'Christmas')) 
     calendar.add_holiday_rule(Coolendar::HolidayRule.week_day(:sunday,'Rest day')) 
     calendar.add_holiday_rule(Coolendar::HolidayRule.month_day(5,1,'Worker day')) 
+    calendar.add_holiday_rule(Coolendar::HolidayRule.range(Coolendar::HolidayRule.month_day(2,3),Coolendar::HolidayRule.month_day(2,7),'Carnival')) 
     
     expect(calendar.get_holiday(date)).to eq('Christmas')
     expect(calendar.get_holiday(Date.strptime('2013-12-29'))).to eq('Rest day')
     expect(calendar.get_holiday(Date.strptime('2013-5-1'))).to eq('Worker day')
+    expect(calendar.get_holiday(Date.strptime('2014-2-5'))).to eq('Carnival')
   end
 
 
