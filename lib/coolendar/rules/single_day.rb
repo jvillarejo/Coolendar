@@ -1,5 +1,5 @@
 module Coolendar
-  class SingleDay
+  class SingleDay < HolidayRule
     include Comparable
 
     attr_reader :date

@@ -1,5 +1,5 @@
 module Coolendar
-  class Range
+  class Range < HolidayRule
     def initialize(from,to)
       @from = from
       @to = to

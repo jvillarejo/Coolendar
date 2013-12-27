@@ -1,5 +1,5 @@
 module Coolendar
-  class DayOfWeek
+  class DayOfWeek < HolidayRule
     include Comparable
 
     def self.week_days

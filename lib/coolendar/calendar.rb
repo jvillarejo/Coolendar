@@ -16,5 +16,9 @@ module Coolendar
     def number_of_rules
       @rules.size
     end
+
+    def get_holiday(day)
+      @rules.find { |rule| rule.match?(day) }.description
+    end
   end
 end

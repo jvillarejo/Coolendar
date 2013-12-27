@@ -3,6 +3,18 @@ require_relative 'spec_helper'
 describe 'Calendar' do
   subject(:calendar) { Coolendar::Calendar.new }
   
+  it 'lets you add an event with a description' do
+    date = Date.strptime('2013-12-25')
+    calendar.add_holiday_rule(Coolendar::HolidayRule.single_day(date,'Christmas')) 
+    calendar.add_holiday_rule(Coolendar::HolidayRule.week_day(:sunday,'Rest day')) 
+    calendar.add_holiday_rule(Coolendar::HolidayRule.month_day(5,1,'Worker day')) 
+    
+    expect(calendar.get_holiday(date)).to eq('Christmas')
+    expect(calendar.get_holiday(Date.strptime('2013-12-29'))).to eq('Rest day')
+    expect(calendar.get_holiday(Date.strptime('2013-5-1'))).to eq('Worker day')
+  end
+
+
   context 'when day is a simple string' do
     let (:rule) { Coolendar::SingleDay.new(Date.today) }
     

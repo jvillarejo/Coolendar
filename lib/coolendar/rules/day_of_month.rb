@@ -1,5 +1,5 @@
 module Coolendar
-  class DayOfMonth
+  class DayOfMonth < HolidayRule
     include Comparable
 
     attr_reader :month, :day
