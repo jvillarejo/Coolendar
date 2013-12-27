@@ -11,15 +11,7 @@ module Coolendar
 
     private 
     def rule_range
-      range = []
-      range << @from      
-      
-      current = @from.succ 
-      while current != @to do
-        range << current
-        current = current.succ
-      end
-      range << @to
+      @from..@to
     end
   end
 end

@@ -1,5 +1,7 @@
 module Coolendar
   class DayOfMonth
+    include Comparable
+
     attr_reader :month, :day
     
     def initialize(month,day)
@@ -19,7 +21,11 @@ module Coolendar
       DayOfMonth.new(next_date.month,next_date.day)
     end
 
-    private
+    def <=>(other)
+      date <=> other.date
+    end
+
+    protected
     def next_date
       date + 1 
     end

@@ -1,20 +1,19 @@
 module Coolendar
   class DayOfWeek
-
-    attr_reader :day 
+    include Comparable
 
     def self.week_days
       @@week_days ||= [:monday,:tuesday,:wednesday,:thursday,:friday,:saturday,:sunday]
     end
     
-    week_days.each do |day|
+    week_days.each_with_index do |day,index|
       send(:define_singleton_method, day) do
-        self.new(day)
+        self.new(index)
       end
     end
 
-    def initialize(day)
-      @day = day
+    def initialize(index)
+      @index = index
     end
 
     def match?(date)
@@ -23,25 +22,37 @@ module Coolendar
       date.send(method)
     end
 
+    def day
+      @@week_days[index % 7]
+    end
+
     def succ
-      result = DayOfWeek.new(next_day)
+      result = DayOfWeek.new(next_index)
+    end
+
+    def next_day
+      succ.day
     end
 
     def ==(other)
       day == other.day
     end
 
-    def next_day
-      last_day? ? @@week_days.first : @@week_days[index + 1]
+    def <=>(other)
+      index <=> other.index
     end
 
     def last_day?
       day == @@week_days.last
     end
 
-    private
+    protected
     def index
-      @@week_days.index(day)
+      @index
+    end
+
+    def next_index
+      index + 1
     end
   end
 end

@@ -1,5 +1,6 @@
 module Coolendar
   class SingleDay
+    include Comparable
 
     attr_reader :date
 
@@ -17,6 +18,10 @@ module Coolendar
 
     def ==(other)
       @date == other.date
+    end
+
+    def <=>(other)
+      date <=> other.date
     end
 
   end
