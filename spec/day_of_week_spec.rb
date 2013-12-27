@@ -3,6 +3,9 @@ require_relative 'spec_helper'
 describe 'DayOfWeek' do
   subject(:saturday) { Coolendar::DayOfWeek.saturday }
   subject(:sunday) { Coolendar::DayOfWeek.sunday }
+  subject(:monday) { Coolendar::DayOfWeek.monday }
+  subject(:tuesday) { Coolendar::DayOfWeek.tuesday }
+  subject(:wednesday) { Coolendar::DayOfWeek.wednesday }
 
   it { expect(saturday.day).to eq(:saturday) }
   it { expect(saturday.next_day).to eq(:sunday) }

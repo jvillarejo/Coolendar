@@ -6,13 +6,23 @@ module Coolendar
     end
 
     def match?(date)
-      puts rule_range.to_a
       rule_range.any? { |rule| rule.match?(date) }
     end
 
     private 
     def rule_range
-      (@from..@to)
+      range = []
+      
+      range << @from
+      
+      current = @from.succ
+      
+      while current != @to do
+        range << current
+        current = current.succ
+      end
+
+      range << @to
     end
   end
 end

@@ -1,8 +1,7 @@
 module Coolendar
   class DayOfWeek
-    include Comparable
 
-    attr_reader :day
+    attr_reader :day 
 
     def self.week_days
       @@week_days ||= [:monday,:tuesday,:wednesday,:thursday,:friday,:saturday,:sunday]
@@ -19,25 +18,21 @@ module Coolendar
     end
 
     def match?(date)
-      method = (@day.to_s + '?').to_sym
+      method = (day.to_s + '?').to_sym
 
       date.send(method)
     end
 
     def succ
-      DayOfWeek.send(next_day)
+      result = DayOfWeek.new(next_day)
     end
 
     def ==(other)
       day == other.day
     end
 
-    def <=>(other)
-       day_number <=> other.day_number
-    end
-
     def next_day
-      last_day? ? @@week_days.first : @@week_days[day_number + 1]
+      last_day? ? @@week_days.first : @@week_days[index + 1]
     end
 
     def last_day?
@@ -45,7 +40,7 @@ module Coolendar
     end
 
     private
-    def day_number
+    def index
       @@week_days.index(day)
     end
   end
